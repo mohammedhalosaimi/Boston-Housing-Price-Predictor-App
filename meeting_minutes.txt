@@ -1,0 +1,17 @@
+1st meeting - Aug 29th, 2019
+
+	- Decide on one idea (flight delays prediction)
+	- Find data
+
+2nd meeting - Sep 5th, 2019
+
+	- Explore the data - By the end of next weekend.
+	- Research and learn cloud services for machine learning
+	- front and back end implementation.
+	- deployment
+	- test
+	- write report
+	- diagrams
+
+
+	** Tasks: Finish exploring the data - By Sep 15th
