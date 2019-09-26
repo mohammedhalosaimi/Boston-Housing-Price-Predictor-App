@@ -45,6 +45,18 @@
     padding: 20px;
     size: 30px;
   }
+
+  label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+  }
+
+  input,
+  label {
+      margin: .4rem 0;
+  }
+
+
   
   </style>
   <html>
@@ -60,44 +72,60 @@
       Please Select your Flight Details from the Drop Down Menu
     </div>
 
-    <!-- <form action="http://127.0.0.1:5000/" method="GET"> -->
-    <select name= Departing_Port method="GET" action="/">
+    <form action="http://127.0.0.1:5000/" method="GET">
+    Please Select your Departing Port: <select name= Departing_Port method="GET" action="/">
       {% for selection in selections[0] %}
       <option value= "{{selections}}" SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
-    <select name= Arriving_Port method="GET" action="/">
+    <br>
+    Please Select your Arriving Port: <select name= Arriving_Port method="GET" action="/">
       {% for selection in selections[1] %}
         <option value= "{{selections}}" SELECTED>{{selection}}</option>"
         {% endfor %}
     </select>
-    <select name= Airline method="GET" action="/">
+    <br>
+    Please Select your Airline Port: <select name= Airline method="GET" action="/">
       {% for selection in selections[2] %}
       <option value= "{{selections}}" SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
-    <select name= Sectors_Scheduled method="GET" action="/">
+    <br>
+    Please Select your Sectors_Scheduled Port: <select name= Sectors_Scheduled method="GET" action="/">
       {% for selection in selections[3] %}
       <option value= "{{selections}}" SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
-    <select name= Sectors_Flown method="GET" action="/">
+    <br>
+    Please Select your Sectors_Flown Port: <select name= Sectors_Flown method="GET" action="/">
       {% for selection in selections[4] %}
       <option value= "{{selections}}" SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
-    <select name= Year method="GET" action="/">
+    <br>
+    Please Select the Year you are Arriving in: <select name= Year method="GET" action="/">
       {% for selection in selections[5] %}
       <option value= "{{selections}}" SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
-    <select name= Month_Num method="GET" action="/">
+    <br>
+    Please Select the Month you are Arriving in: <select name= Month_Num method="GET" action="/">
       {% for selection in selections[6] %}
       <option value= "{{selections}}" SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
+    <br><br><br>
+    <label for="phone">Enter your phone number if you want to recieve the result via text message:</label>
 
-<!-- <input type="submit" value="Submit">
-</form> -->
+    <input type="tel" id="phone" name="phone" pattern="+[0-9]{11}" required>
+    <small>Format: +610000000</small>
+
+
+<input type="submit" value="Submit">
+<br>
+</form>
+<form action="http://127.0.0.1:5000/" method="POST">
+  Prediction is {{result}}
+</form>
   </body>
   </html>
