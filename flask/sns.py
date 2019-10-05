@@ -10,12 +10,17 @@ class Sns:
             aws_secret_access_key="I1lHwn9hANb06d8AeQ5m9njm47UB/bIIrSp39hDB",
             region_name="us-east-1"
         )
+        try:
 
-        # Send a SMS message to the specified phone number
-        response = sns.publish(
-            PhoneNumber=PhoneNumber,
-            Message=result,
-        )
+            # Send a SMS message to the specified phone number
+            response = sns.publish(
+                PhoneNumber=PhoneNumber,
+                Message=result,
+            )
+        
+        except:
+            print("can't send a text message!")
+            pass
 
         # Print out the response
         # print(response)
