@@ -1,0 +1,161 @@
+
+
+<style>
+
+  p {
+    text-align: left;
+    size: 20px
+  }
+  h2 {
+    text-align: center;
+  }
+  
+  select {
+    width: 20%;
+    height: 30px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    size: 30px;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    size: 30px;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+    size: 30px;
+  }
+  
+  div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    size: 30px;
+  }
+
+  label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+  }
+
+  input,
+  label {
+      margin: .4rem 0;
+  }
+
+
+  
+  </style>
+  <html>
+  <head>
+    <h2>Welcome to Boston Housing Price Predictor</h2>
+  </head>
+  
+  <body>
+    <br><br>
+    <h2>We will Help you by Predicting Boston Housing Price - Our prediction is 90% accurate</h2>
+    <div>
+      Please Select your Desired House Features
+    </div>
+
+    <form action="http://127.0.0.1:5000/prediction" method="POST">
+    Please select per capita crime rate by town: <select name= CRIM method="POST" action="/">
+      {% for selection in selections[0] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select proportion of residential land zoned for lots over 25,000 sq.ft.: <select name= ZN method="POST" action="/">
+      {% for selection in selections[1] %}
+        <option SELECTED>{{selection}}</option>"
+        {% endfor %}
+    </select>
+    <br>
+    Please select proportion of non-retail business acres per town: <select name= INDUS method="POST" action="/">
+      {% for selection in selections[2] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select Charles River dummy variable (= 1 if tract bounds river; 0 otherwise): <select name= CHAS method="POST" action="/">
+      {% for selection in selections[3] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select nitric oxides concentration (parts per 10 million): <select name= NOX method="POST" action="/">
+      {% for selection in selections[4] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select average number of rooms per dwelling: <select name= RM method="POST" action="/">
+      {% for selection in selections[5] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select proportion of owner-occupied units built prior to 1940: <select name= AGE method="POST" action="/">
+      {% for selection in selections[6] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select weighted distances to five Boston employment centres: <select name= DIS method="POST" action="/">
+      {% for selection in selections[7] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select index of accessibility to radial highways: <select name= RAD method="POST" action="/">
+      {% for selection in selections[8] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select full-value property-tax rate per $10,000: <select name= TAX method="POST" action="/">
+      {% for selection in selections[9] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select pupil-teacher ratio by town: <select name= PTRATIO method="POST" action="/">
+      {% for selection in selections[10] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town: <select name= B method="POST" action="/">
+      {% for selection in selections[11] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br>
+    Please select % lower status of the population: <select name= LSTAT method="POST" action="/">
+      {% for selection in selections[12] %}
+      <option SELECTED>{{selection}}</option>"
+      {% endfor %}
+    </select>
+    <br><br><br>
+    <label for="phone">Enter your phone number if you want to recieve the result via text message:</label>
+    <input type="tel" id="phone" name="phone" pattern="+[0-9]{11}">
+    <small>Format: +610000000</small>
+<br>
+
+<input type="submit" value="Submit">
+</form>
+  </body>
+  </html>

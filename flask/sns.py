@@ -1,19 +1,24 @@
 import boto3
 
-class SNS:
+class Sns:
 
     def sendSMS(self, PhoneNumber, result):
         # Create an SNS client
-        sns = boto3.client('sns')
+        sns = boto3.client(
+            "sns",
+            aws_access_key_id="AKIAJ4Z2D5LPUTXQYU3A",
+            aws_secret_access_key="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",
+            region_name="us-east-1"
+        )
 
         # Send a SMS message to the specified phone number
         response = sns.publish(
             PhoneNumber=PhoneNumber,
-            Message=result 
+            Message=result,
         )
 
         # Print out the response
-        print(response)
+        # print(response)
 
-a = SNS()
-a.sendSMS('0466636990', 'Hello Mohammed')
+# a = Sns()
+# a.sendSMS('+61466636990', 'Hello Mohammed')

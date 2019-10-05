@@ -1,96 +1,53 @@
-# import libraries
+# import packages
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.preprocessing import StandardScaler, normalize, Imputer, OneHotEncoder
-from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
-from sklearn.linear_model import Ridge, Lasso, LinearRegression, LogisticRegression, LassoCV, RidgeCV, SGDRegressor
-from sklearn.naive_bayes import BernoulliNB, GaussianNB, MultinomialNB
-from sklearn.multioutput import MultiOutputRegressor
-from sklearn.svm import SVR
+
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor, BaggingRegressor, GradientBoostingRegressor
 
 from sklearn.metrics import mean_squared_error
 
-# from keras.models import Sequential
-# from keras.optimizers import adam, SGD
-# from keras.activations import relu, sigmoid, softmax
-# from keras.layers import Dense
-# from keras.callbacks import EarlyStopping
+# import dataset
+from sklearn.datasets import load_boston
 
 class Modelling:
 
 
     def data_preparation(self):
 
-        # load two data
-        df1 = pd.read_csv('../data/otp.csv')
-        df2 = pd.read_excel('../data/OTP_Time_Series_Master_Current_0719.xlsx')
 
-        # df 1
+        # load boston dataset
+        boston = load_boston()
 
-        # drop route column since we have it splitted into two columns (Departing_Port, Arriving_Port)
-        # drop Month columns since it is splitted into two columns (Year, Month_Num)
-        df1.drop(['Route', 'Month'], axis=1, inplace=True)
+        # create a pandas dataframe
+        df = pd.DataFrame(boston.data)
 
-        # df 2
+        # assign features names to columns
+        df.columns = boston.feature_names
 
-        # first, convert Month datatype (time-stamp) to string
-        df2['Month'] = df2['Month'].astype('str')
-        # split Month column into two columns (Month & Year) to match the first dataframe
-        df2['Month_Num'] = df2['Month'].str.split('-').str[1].str.lstrip('0')
-        df2['Year'] = df2['Month'].str.split('-').str[0]
+        # add price values as a column to the dataframe
+        df['PRICE'] = boston.target
 
-        # after modifying the columns as we wish, we will convert them to int data type
+        CRIM = df.CRIM.unique().tolist()
+        ZN = df.ZN.unique().tolist()
+        INDUS = df.INDUS.unique().tolist()
+        CHAS = df.CHAS.unique().tolist()
+        NOX = df.NOX.unique().tolist()
+        RM = df.RM.unique().tolist()
+        AGE = df.AGE.unique().tolist()
+        DIS = df.DIS.unique().tolist()
+        RAD = df.RAD.unique().tolist()
+        TAX = df.TAX.unique().tolist()
+        PTRATIO = df.PTRATIO.unique().tolist()
+        B = df.B.unique().tolist()
+        LSTAT = df.LSTAT.unique().tolist()
 
-        df2['Month_Num'] = df2['Month_Num'].astype(int)
-        df2['Year'] = df2['Year'].astype(int)
+        user_input_list = [CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT]
 
-        # df 2
-
-        # drop route column since we have it splitted into two columns (Departing_Port, Arriving_Port)
-        # drop Month columns since it is splitted into two columns (Year, Month_Num)
-        df2.drop(['Route', 'Month', 'OnTime Departures \n(%)', 'OnTime Arrivals \n(%)', 
-                'Cancellations \n\n(%)'], axis=1, inplace=True)
-
-        # df 2
-
-        # set df2 columns names to match df1 columns names setting
-        df2.columns = df2.columns.str.replace(' ', '_')
-
-        # concatenate the two dataframes
-        df = pd.concat([df1, df2], axis=0, ignore_index=False, keys=None,
-                levels=None, names=None, verify_integrity=False, copy=True)
-
-        # fill null value with the mean of the column
-        df['Cancellations'].fillna(df['Cancellations'].mean(), inplace=True)
-        df['Departures_Delayed'].fillna(df['Departures_Delayed'].mean(), inplace=True)
-
-        # drop all null values
-        df.dropna(inplace=True)
-
-        # get numeric and categorical columns
-        numeric_columns = df.select_dtypes(include=np.number).columns.tolist()
-        categorical_columns = df.select_dtypes(include='object').columns.tolist()
-
-        # convert numeric columns to int data type
-        df[numeric_columns] = df[numeric_columns].apply(lambda x: x.astype(int))
-
-        # convert categorical values to lower case & strip any white space
-        df[categorical_columns] = df[categorical_columns].apply(lambda x: x.str.lower().str.strip())
-        
-
-        Departing_Port = df.Departing_Port.unique().tolist()
-        Arriving_Port = df.Arriving_Port.unique().tolist()
-        Airline = df.Airline.unique().tolist()
-        Month_Num = df.Month_Num.unique().tolist()
-
-        user_input_list = [Departing_Port, Arriving_Port, Airline, Month_Num]
-
-        print("success returning clean data")
         # return clean data
         return df, user_input_list
 
@@ -99,18 +56,13 @@ class Modelling:
         model = Modelling()
         df, _ = model.data_preparation()
 
-        # dummify data
-        dummies_df = pd.get_dummies(df, drop_first=True)
-
-        # get our X and y
-        X = dummies_df.drop(['Departures_On_Time', 'Arrivals_On_Time',
-                    'Departures_Delayed', 'Arrivals_Delayed', 'Year'], axis=1)
-        y = dummies_df[['Departures_On_Time', 'Arrivals_On_Time',
-                    'Departures_Delayed', 'Arrivals_Delayed']]
+        # split data into X and y - features and target
+        X = df.drop('PRICE', axis = 1)
+        y = df['PRICE']
 
 
         # split data into train, test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 42)
 
         # Standradize the data
 
@@ -120,7 +72,7 @@ class Modelling:
         X_test = scaler.transform (X_test)
 
         # instantiate classifier
-        classifier = MultiOutputRegressor(SVR())
+        classifier = GradientBoostingRegressor(learning_rate=0.5, loss='huber')
         # train the model
         classifier.fit(X_train, y_train)
 
@@ -129,7 +81,7 @@ class Modelling:
         return classifier, X
 
 
-    def predictUserInput(self, Departing_Port, Arriving_Port, Airline, Month_Num):
+    def predictUserInput(self, CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT):
 
         # run training data method
         model = Modelling()
@@ -148,19 +100,22 @@ class Modelling:
         # plug the first row with 0s 'the list'
         userInput_df.loc[1,:] = l
 
-        # concatenate the parameters with the accutal value in the dataframe since we dummified the dataframe
-        Departing_Port = 'Departing_Port_' + Departing_Port
-        Arriving_Port = 'Arriving_Port_' + Arriving_Port
-        Airline = 'Airline_' + Airline
-
-
-        # change the value of corresponded columns to 1 if user chooses it
-        userInput_df[Departing_Port] = 1
-        userInput_df[Arriving_Port] = 1
-        userInput_df[Airline] = 1
-        userInput_df['Month_Num'] = Month_Num
+        # plug user's inputs into the dataframe
+        userInput_df['CRIM'] = CRIM
+        userInput_df['ZN'] = ZN
+        userInput_df['INDUS'] = INDUS
+        userInput_df['CHAS'] = CHAS
+        userInput_df['NOX'] = NOX
+        userInput_df['RM'] = RM
+        userInput_df['AGE'] = AGE
+        userInput_df['DIS'] = DIS
+        userInput_df['RAD'] = RAD
+        userInput_df['TAX'] = TAX
+        userInput_df['PTRATIO'] = PTRATIO
+        userInput_df['B'] = B
+        userInput_df['LSTAT'] = LSTAT
 
         # predict
-        prediction = classifier.predict(userInput_df)
+        prediction = str(classifier.predict(userInput_df)[0])
 
         return prediction
