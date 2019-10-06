@@ -76,7 +76,6 @@ class Modelling:
         # train the model
         classifier.fit(X_train, y_train)
 
-        print("Modelling is done")
         # return the model
         return classifier, X
 

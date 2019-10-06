@@ -41,7 +41,7 @@ def postFlaks():
     
     # get user's phone nuber
     user_phone_number = request.form.get("phone", False)       
-    print("Phone number is: ", user_phone_number)
+
     # instantiate the model
     model = Modelling()
 
@@ -50,11 +50,11 @@ def postFlaks():
     
     # append meaniningful message to the prediction
     prediction = "Predicted Median value of owner-occupied homes in $1000's is: " + prediction
+   
     # if the phone number is valid, then send a message
-    if len(user_phone_number) > 10:
-        snsService = Sns()
-        user_phone_number = str(user_phone_number)
-        snsService.sendSMS(user_phone_number, prediction)
+    snsService = Sns()
+    # user_phone_number = str(user_phone_number)
+    snsService.sendSMS(user_phone_number, prediction)
         
     # prediction = 'RESULT'
     return render_template('prediction.html', result=prediction)
