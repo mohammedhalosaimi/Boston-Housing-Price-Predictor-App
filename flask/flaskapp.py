@@ -54,10 +54,10 @@ def postFlaks():
     # if the phone number is valid, then send a message
     snsService = Sns()
     # user_phone_number = str(user_phone_number)
-    snsService.sendSMS(user_phone_number, prediction)
-        
+    returnMessage = snsService.sendSMS(user_phone_number, prediction)
+    
     # prediction = 'RESULT'
-    return render_template('prediction.html', result=prediction)
+    return render_template('prediction.html', result=[prediction, returnMessage])
 
 
 
