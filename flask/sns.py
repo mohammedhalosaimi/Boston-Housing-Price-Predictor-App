@@ -1,13 +1,17 @@
 import boto3
-
+import json
 class Sns:
 
     def sendSMS(self, PhoneNumber, result):
+
+        data = json.loads('credential.json')
+
+
         # Create an SNS client
         sns = boto3.client(
             "sns",
-            aws_access_key_id="AKIAJ4Z2D5LPUTXQYU3A",
-            aws_secret_access_key="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",
+            aws_access_key_id=data.access_key_id,
+            aws_secret_access_key=data.secret_access_key,
             region_name="us-east-1"
         )
         # try and send the message
