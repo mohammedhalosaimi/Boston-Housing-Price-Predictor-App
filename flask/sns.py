@@ -15,7 +15,7 @@ class Sns:
             "sns",
             aws_access_key_id=data['access_key_id'],
             aws_secret_access_key=data['secret_access_key'],
-            region_name="us-east-1"
+            region_name="ap-southeast-2"
         )
         # try and send the message
         try:
