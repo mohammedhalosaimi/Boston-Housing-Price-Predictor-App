@@ -55,6 +55,10 @@ def postFlaks():
     snsService = Sns()
     # user_phone_number = str(user_phone_number)
     returnMessage = snsService.sendSMS(user_phone_number, prediction)
+
+    # check if user did not provide phone nubmer, then don't return any message from the SNS class
+    if len(user_phone_number) == 0:
+        returnMessage = ""
     
     # prediction = 'RESULT'
     return render_template('prediction.html', result=[prediction, returnMessage])
