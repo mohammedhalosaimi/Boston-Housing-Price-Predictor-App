@@ -4,13 +4,20 @@
 
   p {
     text-align: left;
-    size: 20px
+    size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
   }
   h2 {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
   }
+
   
-  select {
+  select, option {
     width: 20%;
     height: 30px;
     padding: 12px 20px;
@@ -19,41 +26,60 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    size: 30px;
+    size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    align-content: center;
   }
   
-  input[type=submit] {
+  input[type=submit]{
     width: 100%;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 10px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     size: 30px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align:center
   }
   
-  input[type=submit]:hover {
+  input[type=submit]:hover{
     background-color: #45a049;
     size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   div {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    size: 30px;
+    size: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
   }
 
   label {
     display: block;
-    font: 1rem 'Fira Sans', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   input,
   label {
       margin: .4rem 0;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  h2 {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  label, small, input {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
 
@@ -61,6 +87,7 @@
   </style>
   <html>
   <head>
+    <br>
     <h2>Welcome to Boston Housing Price Predictor</h2>
   </head>
   
@@ -68,10 +95,10 @@
     <br><br>
     <h2>We will Help you by Predicting Boston Housing Price - Our prediction is 90% accurate</h2>
     <div>
-      Please Select your Desired House Features
-    </div>
-
+      Please Select your Desired House Features:
+      
     <form action="http://127.0.0.1:5000/prediction" method="POST">
+      <br><br<br>
     Please select per capita crime rate by town: <select name= CRIM method="POST" action="/">
       {% for selection in selections[0] %}
       <option SELECTED>{{selection}}</option>"
@@ -149,16 +176,19 @@
       <option SELECTED>{{selection}}</option>"
       {% endfor %}
     </select>
+  </div>
     <br><br><br>
-    <label for="phone">Enter your phone number if you want to recieve the result via text message:</label>
+    <label for="phone">Enter your phone number if you want to recieve the prediction via a text message:</label>
     <input type="tel" id="phone" name="phone" pattern="+[0-9]" minlength="12" maxlength="12">
     <small>Format: +610000000</small>
+    
 <br>
 
-<input type="submit" value="Submit">
-</form>
+<input type="submit" value="Submit"></form><form action="https://datastudio.google.com/embed/reporting/89a8d04a-e129-4a1f-8a23-cb3c42aac8c8/page/m9P2"><input type="submit" value="View Statistic about Boston Houses"></form>
 
-  <iframe width="2000" height="1500" src="https://datastudio.google.com/embed/reporting/89a8d04a-e129-4a1f-8a23-cb3c42aac8c8/page/m9P2" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+  <!-- <iframe width="2000" height="1500" src="https://datastudio.google.com/embed/reporting/89a8d04a-e129-4a1f-8a23-cb3c42aac8c8/page/m9P2" frameborder="0" style="border:0" allowfullscreen></iframe> -->
 
   </body>
   </html>

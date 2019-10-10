@@ -7,7 +7,7 @@ class Sns:
     def sendSMS(self, PhoneNumber, result):
 
         # read json file
-        with open("credential.json", "r") as read_file:
+        with open("credentials.json", "r") as read_file:
             data = json.load(read_file)        
 
         # Create an SNS client
