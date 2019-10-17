@@ -81,10 +81,8 @@
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
   }
-
-
-  
   </style>
+
   <html>
   <head>
     <br>
@@ -98,7 +96,7 @@
       Please Select your Desired House Features:
       
     <form action="/prediction" method="POST">
-      <br><br<br>
+      <br><br><br>
     Please select your desired per capita crime rate by town: <input type="number" step="any" min="0" name="CRIM" required><br>
     Please select your desired proportion of residential land zoned for lots over 25,000 sq.ft.: <input type="number" step="any" minlength="0" name="ZN" required><br>
     Please select your desired proportion of non-retail business acres per town:  <input type="number" step="any" min="0" name="INDUS" required><br>
@@ -113,7 +111,6 @@
     Please select your desired 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town: <input type="number" step="any" min="0" name="B" required><br>
     Please select your desired % lower status of the population: <input type="number" step="any" min="0" name="LSTAT" required><br>
   </div>
-    <br><br><br>
     <label for="phone">Enter your phone number if you want to recieve the prediction via a text message:</label>
     <input type="tel" id="phone" name="phone" pattern="\+\d[0-9]{10}" minlength="12" maxlength="12">
     <small>Format: +6100000000</small>
