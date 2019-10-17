@@ -99,96 +99,27 @@
       
     <form action="/prediction" method="POST">
       <br><br<br>
-    Please select per capita crime rate by town: <select name= CRIM method="POST" action="/">
-      {% for selection in selections[0] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select proportion of residential land zoned for lots over 25,000 sq.ft.: <select name= ZN method="POST" action="/">
-      {% for selection in selections[1] %}
-        <option SELECTED>{{selection}}</option>"
-        {% endfor %}
-    </select>
-    <br>
-    Please select proportion of non-retail business acres per town: <select name= INDUS method="POST" action="/">
-      {% for selection in selections[2] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select Charles River dummy variable (= 1 if tract bounds river; 0 otherwise): <select name= CHAS method="POST" action="/">
-      {% for selection in selections[3] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select nitric oxides concentration (parts per 10 million): <select name= NOX method="POST" action="/">
-      {% for selection in selections[4] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select average number of rooms per dwelling: <select name= RM method="POST" action="/">
-      {% for selection in selections[5] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select proportion of owner-occupied units built prior to 1940: <select name= AGE method="POST" action="/">
-      {% for selection in selections[6] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select weighted distances to five Boston employment centres: <select name= DIS method="POST" action="/">
-      {% for selection in selections[7] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select index of accessibility to radial highways: <select name= RAD method="POST" action="/">
-      {% for selection in selections[8] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select full-value property-tax rate per $10,000: <select name= TAX method="POST" action="/">
-      {% for selection in selections[9] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select pupil-teacher ratio by town: <select name= PTRATIO method="POST" action="/">
-      {% for selection in selections[10] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town: <select name= B method="POST" action="/">
-      {% for selection in selections[11] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
-    <br>
-    Please select % lower status of the population: <select name= LSTAT method="POST" action="/">
-      {% for selection in selections[12] %}
-      <option SELECTED>{{selection}}</option>"
-      {% endfor %}
-    </select>
+    Please select your desired per capita crime rate by town: <input type="number" step="any" min="0" name="CRIM" required><br>
+    Please select your desired proportion of residential land zoned for lots over 25,000 sq.ft.: <input type="number" step="any" minlength="0" name="ZN" required><br>
+    Please select your desired proportion of non-retail business acres per town:  <input type="number" step="any" min="0" name="INDUS" required><br>
+    Please select either 1 OR 2 for Charles River dummy variable (= 1 if tract bounds river; 0 otherwise): <input type="number" min="0" max="1" name="CHAS" required><br>
+    Please select your desired nitric oxides concentration (parts per 10 million): <input type="number" step="any" min="0" name="NOX" required><br>
+    Please select your desired average number of rooms per dwelling: <input type="number" step="any" min="0" name="RM" required><br>
+    Please select your desired proportion of owner-occupied units built prior to 1940: <input type="number" step="any" min="0" name="AGE" required><br>
+    Please select your desired weighted distances to five Boston employment centres: <input type="number" step="any" min="0" name="DIS" required><br>
+    Please select your desired index of accessibility to radial highways: <input type="number" step="any" min="0" name="RAD" required><br>
+    Please select your desired full-value property-tax rate per $10,000: <input type="number" step="any" min="0" name="TAX" required><br>
+    Please select your desired pupil-teacher ratio by town: <input type="number" step="any" min="0" name="PTRATIO" required><br>
+    Please select your desired 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town: <input type="number" step="any" min="0" name="B" required><br>
+    Please select your desired % lower status of the population: <input type="number" step="any" min="0" name="LSTAT" required><br>
   </div>
     <br><br><br>
     <label for="phone">Enter your phone number if you want to recieve the prediction via a text message:</label>
-    <input type="tel" id="phone" name="phone" pattern="+[0-9]" minlength="12" maxlength="12">
-    <small>Format: +610000000</small>
+    <input type="tel" id="phone" name="phone" pattern="\+\d[0-9]{10}" minlength="12" maxlength="12">
+    <small>Format: +6100000000</small>
     
 <br>
 
 <input type="submit" value="Submit"></form><form action="https://datastudio.google.com/embed/reporting/89a8d04a-e129-4a1f-8a23-cb3c42aac8c8/page/m9P2"><input type="submit" value="View Statistic about Boston Houses"></form>
-
-
-
-  <!-- <iframe width="2000" height="1500" src="https://datastudio.google.com/embed/reporting/89a8d04a-e129-4a1f-8a23-cb3c42aac8c8/page/m9P2" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-
   </body>
   </html>

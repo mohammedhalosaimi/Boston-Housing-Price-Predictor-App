@@ -77,14 +77,14 @@ class Modelling:
         classifier.fit(X_train, y_train)
 
         # return the model
-        return classifier, X
+        return classifier, scaler, X
 
 
     def predictUserInput(self, CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT):
 
         # run training data method
         model = Modelling()
-        classifier, X = model.dataTraining()
+        classifier, scaler, X = model.dataTraining()
 
         # create an empty row
         userInput_df = pd.DataFrame(columns=X.columns)
@@ -114,7 +114,11 @@ class Modelling:
         userInput_df['B'] = B
         userInput_df['LSTAT'] = LSTAT
 
+        # transform the data to the scale of the dataset
+        scaled_inputs = scaler.transform(np.array(userInput_df))
+
+
         # predict
-        prediction = str(classifier.predict(userInput_df)[0])
+        prediction = str(classifier.predict(scaled_inputs)).strip("[]")
 
         return prediction
