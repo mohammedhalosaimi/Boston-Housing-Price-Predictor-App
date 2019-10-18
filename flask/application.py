@@ -38,7 +38,6 @@ def postFlaks():
     user_B = request.form.get("B", False)
     user_LSTAT = request.form.get("LSTAT", False)
 
-    
     # get user's phone nuber
     user_phone_number = request.form.get("phone", False)       
 
