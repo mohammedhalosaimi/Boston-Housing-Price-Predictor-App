@@ -23,7 +23,7 @@ joblib==0.14.0
 kiwisolver==1.1.0
 MarkupSafe==1.1.1
 matplotlib==3.1.1
-numpy==1.17.2
+numpy==1.22.0
 pandas==0.25.1
 paramiko==2.6.0
 pigar==0.9.2
